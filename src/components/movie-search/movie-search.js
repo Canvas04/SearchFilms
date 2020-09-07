@@ -1,17 +1,3 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { Input } from "antd";
-import { Card } from "antd";
-function App() {
-  return (
-    <div>
-      <Input placeholder="Type to search..." />
-      <Card title="Hi" />
-    </div>
-  );
-}
-ReactDom.render(<App />, document.querySelector("#root"));
-
 class MovieSearch {
     _baseUrl = "https://api.themoviedb.org/3";
     api_key = "ac4255c06e52a841804866a58661de95";
@@ -34,3 +20,4 @@ class MovieSearch {
       return this.getResourse('/genre/movie/list')
   }
 }
+export default MovieSearch;
