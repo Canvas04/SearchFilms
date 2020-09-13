@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import ReactDom from "react-dom";
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
-import { List, Card } from "antd";
+import { Rate } from 'antd';
 import "./index.css";
+import  'antd/dist/antd.css';
 class App extends Component {
   state = {
     data: [],
@@ -51,6 +52,7 @@ class App extends Component {
   render() {
     const { data } = this.state;
     const elements = data.map((item) => {
+      {console.log(item)}
       return (
         <li key={item.id} className="content">
           <div className="content-img">
@@ -72,9 +74,13 @@ class App extends Component {
             <div className="content-desc-genre"></div>
             <div className="content-desc-overview">{item.desk}</div>
 
-            <div className="content-desc-stars"></div>
+            <div className="content-desc-stars">
+           <Rate allowHalf={true} count={9} defaultValue={item.rate} />
+            </div>
           </div>
+          
         </li>
+         
       );
     });
     return (

@@ -27,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: small;
+    font-size: 10px;
 }
 .content-desc {
     padding-left: 16px;
@@ -39,11 +39,17 @@ body {
 }
 .content-desc-header-rate {
     border: 2px solid orange;
-    text-align: center;
-    width: 30px;
-    line-height: 30px;
-    border-radius: 100%;
-    margin: 20px 10px;
-    display: inline-block;
+    text-align: center ;
+    width: 30px ;
+    line-height: 30px ;
+    border-radius: 100% ;
+    margin: 20px 10px ;
+    display: inline-block ;
     vertical-align: top;
+}
+.content-desc-overview {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
 }
