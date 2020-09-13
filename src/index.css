@@ -1,5 +1,6 @@
 body {
-    background-color: gray;
+    background-color: gray !important;
+    font-size: 12px !important;
 }
 .list-content {
     display: flex;
@@ -60,4 +61,10 @@ body {
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow-y: hidden;
+}
+.content-img {
+    text-align:center;
+}
+.content-img-el {
+    height: 100%;
 }

@@ -65,7 +65,7 @@ class App extends Component {
             <img
               alt={item.title}
               src={`http://image.tmdb.org/t/p/w440_and_h660_face/${item.poster}`}
-              width={150}
+              width={150} className='content-img-el'
             />
           </div>
 
