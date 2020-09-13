@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import ReactDom from "react-dom";
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
-import { Rate } from 'antd';
+import { Rate } from "antd";
 import "./index.css";
-import  'antd/dist/antd.css';
+import "antd/dist/antd.css";
+import { Tabs } from "antd";
+const { TabPane } = Tabs;
+console.log(Tabs, TabPane);
 class App extends Component {
   state = {
     data: [],
@@ -52,7 +55,9 @@ class App extends Component {
   render() {
     const { data } = this.state;
     const elements = data.map((item) => {
-      {console.log(item)}
+      {
+        console.log(item);
+      }
       return (
         <li key={item.id} className="content">
           <div className="content-img">
@@ -67,7 +72,8 @@ class App extends Component {
           <div className="content-desc">
             <header className="content-desc-header">
               <h1> {item.title}</h1>
-              <span className='content-desc-header-rate'><span>{item.rate}</span>
+              <span className="content-desc-header-rate">
+                <span>{item.rate}</span>
               </span>
             </header>
             <div className="content-desc-date">{item.date}</div>
@@ -75,16 +81,22 @@ class App extends Component {
             <div className="content-desc-overview">{item.desk}</div>
 
             <div className="content-desc-stars">
-           <Rate allowHalf={true} count={9} defaultValue={item.rate} />
+              <Rate allowHalf={true} count={9} defaultValue={item.rate} />
             </div>
           </div>
-          
         </li>
-         
       );
     });
     return (
       <div className="main">
+        <Tabs centered={true} defaultActiveKey="2">
+          <TabPane tab={<span>Tab 1</span>} key="1">
+            Tab 1
+          </TabPane>
+          <TabPane tab={<span>Tab 2</span>} key="2">
+            Tab 2
+          </TabPane>
+        </Tabs>
         <DebounceInput
           minLength={1}
           debounceTimeout={100}
