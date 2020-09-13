@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
 import { List, Card } from "antd";
-import {formatISO} from 'date-fns';
+import { formatISO } from "date-fns";
 class App extends Component {
   state = {
     data: [],
@@ -29,6 +29,7 @@ class App extends Component {
       const needArr = body.results;
       console.log(needArr);
       const newData = needArr.map((item) => {
+        console.log(typeof item.release_date);
         return this.createItem(
           item.id,
           item.original_title,
@@ -46,6 +47,7 @@ class App extends Component {
 
   render() {
     const { data } = this.state;
+
     return (
       <div>
         <DebounceInput
@@ -58,6 +60,7 @@ class App extends Component {
           dataSource={data}
           renderItem={(item) => (
             <List.Item>
+              {console.log(item)}
               <Card
                 extra={
                   <div className="content">
@@ -69,16 +72,17 @@ class App extends Component {
                         width={150}
                       />
                     </div>
-                   
+
                     <div className="content-desc">
                       <header className="content-desc-header">
                         <h1> {item.title}</h1>
-                        <span>{item.vote_count}</span>
+                        <span>{item.rate}</span>
                       </header>
-                      <div className="content-desc-date">
-                  {item.release_date.getDay()}
-                  {console.log(item.release_date)}
-                      </div>
+                      <div className="content-desc-date">{item.date}</div>
+                      <div className="content-desc-genre"></div>
+                      <div className="content-desc-overview">{item.desk}</div>
+
+                      <div className="content-desc-stars"></div>
                     </div>
                   </div>
                 }
