@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 import Card from './components/card';
+import CardList from './components/cardList'
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
 import { Rate } from "antd";
