@@ -1,5 +1,4 @@
 import React from 'react';
-import './CardList.css';
 import Card from '../card';
 function CardList({data}) {
 return (

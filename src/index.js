@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 import Card from './components/card';
-import CardList from './components/cardList'
+import CardList from './components/cardList';
+import TabPanel from './components/tabPanel';
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
 import { Rate } from "antd";
@@ -9,7 +10,6 @@ import "./index.css";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
-console.log(Tabs, TabPane);
 class App extends Component {
   state = {
     data: [],
@@ -59,22 +59,21 @@ class App extends Component {
    
     return (
       <div className="main">
-        <Tabs centered={true} defaultActiveKey="2">
+        {/* <Tabs centered={true} defaultActiveKey="2">
           <TabPane tab={<span>Tab 1</span>} key="1">
             Tab 1
           </TabPane>
           <TabPane tab={<span>Tab 2</span>} key="2">
             Tab 2
           </TabPane>
-        </Tabs>
+        </Tabs> */}
+        <TabPanel />
         <DebounceInput
           minLength={1}
           debounceTimeout={100}
           onChange={this.onChangeHandler}
         />
-        <ul className="list-content">
-          <Card data={data}/>
-        </ul>
+       <CardList data={data} />
       </div>
     );
   }
