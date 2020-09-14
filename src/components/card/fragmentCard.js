@@ -1,13 +1,9 @@
-import React, { Fragment } from "react";
-import "./card.css";
-import { Rate } from "antd";
-import Loader from '../loader';
-import CardFragment from './fragmentCard';
-function Card({ data,loading }) {
-  const elements = data.map((item) => {
+import React , {Fragment} from 'react';
+import {Rate} from 'antd';
+ const CardFragment = ({item}) => {
     return (
-      <li key={item.id} className="content">
-        <div className="content-img">
+        <>
+         <div className="content-img">
           {" "}
           <img
             alt={item.title}
@@ -32,9 +28,7 @@ function Card({ data,loading }) {
             <Rate allowHalf={true} count={9} defaultValue={item.rate} />
           </div>
         </div>
-      </li>
-    );
-  });
-return <Fragment> {elements}</Fragment>;
+        </>
+    )
 }
-export default Card;
+export default CardFragment;

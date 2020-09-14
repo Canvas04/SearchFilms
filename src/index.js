@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     data: [],
     value: "",
+    loading: true
   };
   createItem(id, title, date, genre, desk, stars, rate, poster) {
     return {
@@ -43,7 +44,9 @@ class App extends Component {
             item.poster_path
           );
         });
-        this.setState({ data: newData });
+        this.setState((state) => {
+          return {data: newData,loading:!state.loading}
+        });
       });
     } else {
       this.setState({ data: [] });
@@ -51,8 +54,7 @@ class App extends Component {
   };
 
   render() {
-    const { data } = this.state;
-   
+    const { data,loading } = this.state;
     return (
       <div className="main">
         <TabPanel />
@@ -61,7 +63,8 @@ class App extends Component {
           debounceTimeout={100}
           onChange={this.onChangeHandler}
         />
-       <CardList data={data} />
+
+       <CardList data={data} loading={loading}/>
       </div>
     );
   }
