@@ -41,6 +41,7 @@ body {
 .content-desc {
     padding-left: 16px;
     padding-right: 16px;
+    margin-bottom: 32px;
 }
 .content-desc-date {
     color: gray;
