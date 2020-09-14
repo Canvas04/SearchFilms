@@ -69,3 +69,8 @@ body {
 .content-img-el {
     height: 100%;
 }
+@media (max-width: 567px) {
+    .content {
+        flex-basis: 100%;
+    }
+}
