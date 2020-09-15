@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
 import "./card.css";
 import { Rate } from "antd";
-import Loader from '../loader';
-import CardFragment from './fragmentCard';
-function Card({ data,loading }) {
+function Card({ data }) {
+  
   const elements = data.map((item) => {
     return (
       <li key={item.id} className="content">

@@ -12,7 +12,6 @@ class App extends Component {
   state = {
     data: [],
     value: "",
-    loading: true
   };
   createItem(id, title, date, genre, desk, stars, rate, poster) {
     return {
@@ -26,9 +25,11 @@ class App extends Component {
       poster,
     };
   }
+  
   onChangeHandler = (e) => {
     this.setState({ value: e.target.value });
     const { value } = this.state;
+    this.setState({loading: true})
     if (value) {
       new MovieSearch().getMovie(value).then((body) => {
         const needArr = body.results;
@@ -45,16 +46,20 @@ class App extends Component {
           );
         });
         this.setState((state) => {
-          return {data: newData,loading:!state.loading}
-        });
+          return {
+            data: newData,
+            loading:false
+          }
+        })
       });
     } else {
-      this.setState({ data: [] });
+      this.setState({ data: [] ,loading:false});
     }
   };
 
   render() {
     const { data,loading } = this.state;
+    {console.log(this.state.loading)}
     return (
       <div className="main">
         <TabPanel />
@@ -62,6 +67,7 @@ class App extends Component {
           minLength={1}
           debounceTimeout={100}
           onChange={this.onChangeHandler}
+          onInput={this.checkLoader}
         />
 
        <CardList data={data} loading={loading}/>
