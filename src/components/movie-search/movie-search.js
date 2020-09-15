@@ -9,8 +9,10 @@ class MovieSearch {
     if (!res.ok) {
       throw new Error(`Movies not found , received ${res.status} `);
     }
-    const body = await res.json();
+      const body = await res.json();
     return body;
+  
+    
   }
   async getMovie(movie,num) {
       return this.getResourse('/search/movie',`query=${movie}`,`page=${num}`)

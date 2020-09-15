@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     data: [],
     value: "",
+    isError:false
   };
   createItem(id, title, date, genre, desk, stars, rate, poster) {
     return {
@@ -25,7 +26,9 @@ class App extends Component {
       poster,
     };
   }
-  
+  onError = (err) => {
+this.setState({isError: true})
+  }
   onChangeHandler = (e) => {
     this.setState({ value: e.target.value });
     const { value } = this.state;
@@ -44,22 +47,26 @@ class App extends Component {
             item.vote_average,
             item.poster_path
           );
-        });
+        })
+        
         this.setState((state) => {
           return {
             data: newData,
             loading:false
           }
         })
-      });
+        if(newData.length === 0) {
+          throw new Error('Not Found')
+        }
+      })
+      .catch(this.onError)
     } else {
       this.setState({ data: [] ,loading:false});
     }
   };
 
   render() {
-    const { data,loading } = this.state;
-    {console.log(this.state.loading)}
+    const { data,loading,isError } = this.state;
     return (
       <div className="main">
         <TabPanel />
@@ -70,7 +77,7 @@ class App extends Component {
           onInput={this.checkLoader}
         />
 
-       <CardList data={data} loading={loading}/>
+       <CardList data={data} loading={loading} isError={isError}/>
       </div>
     );
   }
