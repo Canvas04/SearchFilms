@@ -3,7 +3,7 @@ import Card from "../card";
 import Loader from "../loader";
 import { Alert } from "antd";
 import "./cardList.css";
-function CardList({ data, loading, isError }) {
+function CardList({ data, loading, isError,onClose }) {
   const errorMessage = isError ? (
     <Alert
       message="Error"
@@ -11,6 +11,7 @@ function CardList({ data, loading, isError }) {
       type="error"
       showIcon
       closable
+     onClose={onClose}
     />
   ) : null;
   const hasData = !(loading || isError);
