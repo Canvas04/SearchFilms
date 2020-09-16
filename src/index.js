@@ -4,7 +4,6 @@ import CardList from "./components/cardList";
 import TabPanel from "./components/tabPanel";
 import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
-import Loader from "./components/loader";
 import "./index.css";
 import "antd/dist/antd.css";
 
