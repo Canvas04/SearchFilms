@@ -67,7 +67,8 @@ class App extends Component {
     }
   };
   onClose = () => {
-    this.setState({value: ''})
+    this.setState({value: '',isError:false})
+    
   }
   render() {
     const { data, loading, isError ,value} = this.state;
@@ -88,3 +89,4 @@ class App extends Component {
   }
 }
 ReactDom.render(<App />, document.querySelector("#root"));
+// Смотри в кард Лист , там проблема какая то
