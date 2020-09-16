@@ -36,6 +36,7 @@ class App extends Component {
       new MovieSearch()
         .getMovie(value)
         .then((body) => {
+          console.log(body);
           const needArr = body.results;
           const newData = needArr.map((item) => {
             return this.createItem(
@@ -89,3 +90,7 @@ class App extends Component {
 }
 ReactDom.render(<App />, document.querySelector("#root"));
 // Смотри в кард Лист , там проблема какая то
+new MovieSearch().getMovie('w')
+.then(res => {
+  console.log(res);
+})
