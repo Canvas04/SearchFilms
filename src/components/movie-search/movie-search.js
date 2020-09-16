@@ -9,6 +9,7 @@ class MovieSearch {
     if (!res.ok) {
       throw new Error(`Movies not found , received ${res.status} `);
     }
+    console.log(res.status);
       const body = await res.json();
     return body;
   

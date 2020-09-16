@@ -4,8 +4,34 @@ import Loader from "../loader";
 import { Alert } from "antd";
 import "./cardList.css";
 function CardList({ data, loading, isError,onClose }) {
-  const errorMessage = isError ? (
-    <Alert
+  
+  let classNames = "list-content";
+  if (loading) {
+    classNames += " loader";
+  }
+  return (
+    <ul className={classNames}>
+      <Error loading={loading} isError={isError} onClose={onClose} data={data} />
+    </ul>
+  );
+}
+export default CardList;
+
+function Error ({loading,isError,onClose,data}) {
+  if(loading && isError) {
+    return <> <Alert
+    message="Error"
+    description="Not Internet Connection"
+    type="error"
+     />
+  </>
+  }else if (loading) {
+return <>
+<Loader />
+      </>
+  }else if(isError) {
+return <>
+<Alert
       message="Error"
       description="Such film is not found"
       type="error"
@@ -13,20 +39,8 @@ function CardList({ data, loading, isError,onClose }) {
       closable
      onClose={onClose}
     />
-  ) : null;
-  const hasData = !(loading || isError);
-  const loader = loading ? <Loader /> : null;
-  const cardEl = hasData ? <Card data={data} /> : null;
-  let classNames = "list-content";
-  if (loading) {
-    classNames += " loader";
+</>
   }
-  return (
-    <ul className={classNames}>
-      {errorMessage}
-      {loader}
-      {cardEl}
-    </ul>
-  );
+  return <> <Card data={data} />
+  </>
 }
-export default CardList;
