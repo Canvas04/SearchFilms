@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 import Tab1 from './components/tab1';
-import CardList from "./components/cardList";
-import TabPanel from "./components/tabPanel";
-import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
-import Pagination from "./components/pagination";
-import { GenreProvider } from "./components/genres-context/genres-context";
+import { Tabs } from "antd";
+const { TabPane } = Tabs;
 
 
 class App extends Component {
@@ -132,8 +129,15 @@ componentDidMount() {
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">
-        <TabPanel />
-        <Tab1 onChangeHandler={this.onChangeHandler} value={value} genres={genres} data={data} loading={loading} onClose={this.onClose} isError={isError} totalResults={totalResults} numberPages={numberPages} nextPage={this.nextPage} currentPage={currentPage} />
+        <Tabs centered={true} defaultActiveKey="1">
+          <TabPane tab={<span>Tab 1</span>} key="1">
+             <Tab1 onChangeHandler={this.onChangeHandler} value={value} genres={genres} data={data} loading={loading} onClose={this.onClose} isError={isError} totalResults={totalResults} numberPages={numberPages} nextPage={this.nextPage} currentPage={currentPage} />
+          </TabPane>
+          <TabPane tab={<span>Tab 2</span>} key="2">
+            
+          </TabPane>
+        </Tabs>
+       
 
       </div>
     );

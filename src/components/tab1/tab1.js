@@ -3,6 +3,7 @@ import { DebounceInput } from "react-debounce-input";
 import Pagination from "../pagination";
 import {GenreProvider} from '../genres-context';
 import CardList from '../cardList';
+import './tab1.css';
 
 export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose,isError,totalResults,numberPages,nextPage,currentPage}) {
     return <>
@@ -11,6 +12,7 @@ export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose
     debounceTimeout={100}
     onChange={onChangeHandler}
     value={value}
+   className='input'
   />
     <GenreProvider value={genres}>  <CardList
     data={data}
