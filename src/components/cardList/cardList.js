@@ -1,10 +1,7 @@
 import React from "react";
-import Card from "../card";
-import Loader from "../loader";
-import { Alert } from "antd";
 import "./cardList.css";
 import Error from '../error';
-function CardList({ data, loading, isError, onClose, genresArr }) {
+function CardList({ data, loading, isError, onClose }) {
   let classNames = "list-content";
   if (loading) {
     classNames += " loader";
@@ -16,7 +13,6 @@ function CardList({ data, loading, isError, onClose, genresArr }) {
         isError={isError}
         onClose={onClose}
         data={data}
-        genres={genresArr}
       />
     </ul>
   );

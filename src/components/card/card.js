@@ -4,7 +4,7 @@ import { Rate as Stars} from "antd";
 import Genre from '../genres';
 import Rate from '../rate';
 
-function Card({ data,genres }) {
+function Card({ data }) {
   const elements = data.map((item) => {
     
     return (
@@ -26,7 +26,7 @@ function Card({ data,genres }) {
             <Rate rate={item.rate} />
           </header>
           <div className="content-desc-date">{item.date}</div>
-          <div className="content-desc-genre"><Genre id={item.genre} genres={genres}/></div>
+          <div className="content-desc-genre"><Genre id={item.genre} /></div>
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">

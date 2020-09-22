@@ -7,6 +7,8 @@ import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
 import Pagination from "./components/pagination";
+import { GenreProvider } from "./components/genres-context/genres-context";
+
 
 class App extends Component {
   state = {
@@ -137,15 +139,14 @@ componentDidMount() {
           onInput={this.checkLoader}
           value={value}
         />
-
-        <CardList
+          <GenreProvider value={genres}>  <CardList
           data={data}
           loading={loading}
           onClose={this.onClose}
           isError={isError}
-       genresArr={genres}
-        />
-
+        /></GenreProvider>
+      
+        
         {totalResults > 20 ? (
           <Pagination
             pages={numberPages}
