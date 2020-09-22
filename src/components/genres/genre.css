@@ -5,8 +5,9 @@
     display: flex;
 }
 .genre li {
-    margin-right: 5px;
+    margin-right: 6px;
     padding: 2px;
    outline: 1px solid;
    box-shadow: 2px 1px burlywood;
+   border-radius: 3px;
 }
