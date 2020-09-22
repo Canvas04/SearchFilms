@@ -30,7 +30,7 @@ function Card({ data }) {
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">
-            <Stars allowHalf={true} count={9} defaultValue={item.rate} />
+            <Stars allowHalf={true} count={9} onChange={(number) => number } />
           </div>
         </div>
       </li>
