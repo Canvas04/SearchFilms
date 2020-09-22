@@ -6,52 +6,53 @@ import { DebounceInput } from "react-debounce-input";
 import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
-import Pagination from './components/pagination';
+import Pagination from "./components/pagination";
+import { GenreProvider } from "./components/genres-context";
 class App extends Component {
   state = {
     data: [],
     value: "",
     isError: false,
-    totalResults:0,
-    currentPage:1
+    totalResults: 0,
+    currentPage: 1,
   };
   nextPage = (pageNumber) => {
-    const {value} = this.state;
-    if(value) {
-      new MovieSearch().getMovie(value,pageNumber)
-      .then((body) => {
-        console.log(body);
-        const needArr = body.results;
-        const newData = needArr.map((item) => {
-          return this.createItem(
-            item.id,
-            item.original_title,
-            item.release_date,
-            item.genre_ids,
-            item.overview,
-            item.vote_count,
-            item.vote_average,
-            item.poster_path
-          );
-        });
+    const { value } = this.state;
+    if (value) {
+      new MovieSearch()
+        .getMovie(value, pageNumber)
+        .then((body) => {
+          console.log(body);
+          const needArr = body.results;
+          const newData = needArr.map((item) => {
+            return this.createItem(
+              item.id,
+              item.original_title,
+              item.release_date,
+              item.genre_ids,
+              item.overview,
+              item.vote_count,
+              item.vote_average,
+              item.poster_path
+            );
+          });
 
-        this.setState((state) => {
-          return {
-            data: newData,
-            loading: false,
-            currentPage: pageNumber
-          };
-        });
-        if (newData.length === 0) {
-          throw new Error("Not Found");
-        }
-      })
-      .catch(this.onError);
-    }else {
+          this.setState((state) => {
+            return {
+              data: newData,
+              loading: false,
+              currentPage: pageNumber,
+            };
+          });
+          if (newData.length === 0) {
+            throw new Error("Not Found");
+          }
+        })
+        .catch(this.onError);
+    } else {
       this.setState({ data: [], loading: false });
     }
-    
-  }
+  };
   createItem(id, title, date, genre, desk, stars, rate, poster) {
     return {
       id,
@@ -89,12 +90,11 @@ class App extends Component {
               item.poster_path
             );
           });
-
           this.setState((state) => {
             return {
               data: newData,
               loading: false,
-              totalResults: body.total_results
+              totalResults: body.total_results,
             };
           });
           if (newData.length === 0) {
@@ -107,13 +107,26 @@ class App extends Component {
     }
   };
   onClose = () => {
-    this.setState({value: '',isError:false})
-    
-  }
+    this.setState({ value: "", isError: false });
+  };
+  
+componentDidMount() {
+  new MovieSearch().getGenres()
+  .then(res => {
+    this.setState({genres:res.genres})
+  })
+}
   render() {
-    const { data, loading, isError ,value,totalResults,currentPage} = this.state;
+    const {
+      data,
+      loading,
+      isError,
+      value,
+      totalResults,
+      currentPage,
+      genres
+    } = this.state;
     const numberPages = Math.floor(totalResults / 20);
-    console.log(numberPages);
     return (
       <div className="main">
         <TabPanel />
@@ -125,8 +138,21 @@ class App extends Component {
           value={value}
         />
 
-        <CardList data={data}  loading={loading} onClose={this.onClose} isError={isError} />
-        {totalResults > 20 ? <Pagination pages={numberPages} nextPage={this.nextPage} currentPage={currentPage} /> : null}
+        <CardList
+          data={data}
+          loading={loading}
+          onClose={this.onClose}
+          isError={isError}
+       genresArr={genres}
+        />
+
+        {totalResults > 20 ? (
+          <Pagination
+            pages={numberPages}
+            nextPage={this.nextPage}
+            currentPage={currentPage}
+          />
+        ) : null}
       </div>
     );
   }

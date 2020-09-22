@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
 import "./card.css";
 import { Rate } from "antd";
-function Card({ data }) {
-  
+
+function Card({ data,genres }) {
   const elements = data.map((item) => {
+    
     return (
       <li key={item.id} className="content">
+       {console.log(item.genre)} 
         <div className="content-img">
           {" "}
           <img
@@ -23,8 +25,8 @@ function Card({ data }) {
               <span>{item.rate}</span>
             </span>
           </header>
+          <div className="content-desc-genre"><Genre id={item.genre} genres={genres}/></div>
           <div className="content-desc-date">{item.date}</div>
-          <div className="content-desc-genre"></div>
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">
@@ -34,6 +36,18 @@ function Card({ data }) {
       </li>
     );
   });
-return <Fragment> {elements}</Fragment>;
+  return <Fragment> {elements}</Fragment>;
 }
 export default Card;
+
+function Genre({ id,genres }) {
+ const genresArr =  genres.map(el => {
+    if(id.includes(el.id)) {
+      return el.name;
+    }
+  })
+  const genresStr = genresArr.filter(el => el !== undefined).join(',')
+  return <>
+<span>{genresStr}</span>
+  </>
+}

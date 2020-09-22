@@ -26,6 +26,9 @@
     color: gray;
     opacity: 0.5;
 }
+.content-desc-genre {
+    margin-top: -16px;
+}
 .content-desc-header-rate {
     border: 2px solid orange;
     text-align: center ;
