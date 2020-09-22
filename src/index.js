@@ -130,11 +130,12 @@ componentDidMount() {
     return (
       <div className="main">
         <Tabs centered={true} defaultActiveKey="1">
-          <TabPane tab={<span>Tab 1</span>} key="1">
+          <TabPane tab={<span>Search</span>} key="1">
              <Tab1 onChangeHandler={this.onChangeHandler} value={value} genres={genres} data={data} loading={loading} onClose={this.onClose} isError={isError} totalResults={totalResults} numberPages={numberPages} nextPage={this.nextPage} currentPage={currentPage} />
           </TabPane>
-          <TabPane tab={<span>Tab 2</span>} key="2">
+          <TabPane tab={<span>Rated</span>} key="2">
             
+
           </TabPane>
         </Tabs>
        
