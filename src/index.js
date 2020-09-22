@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
+import Tab1 from './components/tab1';
 import CardList from "./components/cardList";
 import TabPanel from "./components/tabPanel";
 import { DebounceInput } from "react-debounce-input";
@@ -132,28 +133,8 @@ componentDidMount() {
     return (
       <div className="main">
         <TabPanel />
-        <DebounceInput
-          minLength={1}
-          debounceTimeout={100}
-          onChange={this.onChangeHandler}
-          onInput={this.checkLoader}
-          value={value}
-        />
-          <GenreProvider value={genres}>  <CardList
-          data={data}
-          loading={loading}
-          onClose={this.onClose}
-          isError={isError}
-        /></GenreProvider>
-      
-        
-        {totalResults > 20 ? (
-          <Pagination
-            pages={numberPages}
-            nextPage={this.nextPage}
-            currentPage={currentPage}
-          />
-        ) : null}
+        <Tab1 onChangeHandler={this.onChangeHandler} value={value} genres={genres} data={data} loading={loading} onClose={this.onClose} isError={isError} totalResults={totalResults} numberPages={numberPages} nextPage={this.nextPage} currentPage={currentPage} />
+
       </div>
     );
   }
