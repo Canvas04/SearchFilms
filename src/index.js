@@ -7,7 +7,7 @@ import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
 import Pagination from "./components/pagination";
-import { GenreProvider } from "./components/genres-context";
+
 class App extends Component {
   state = {
     data: [],

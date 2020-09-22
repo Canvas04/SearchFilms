@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import "./card.css";
 import { Rate } from "antd";
+import Genre from '../genres';
 
 function Card({ data,genres }) {
   const elements = data.map((item) => {
@@ -40,14 +41,4 @@ function Card({ data,genres }) {
 }
 export default Card;
 
-function Genre({ id,genres }) {
- const genresArr =  genres.map(el => {
-    if(id.includes(el.id)) {
-      return el.name;
-    }
-  })
-  const genresStr = genresArr.filter(el => el !== undefined).join(',')
-  return <>
-<span>{genresStr}</span>
-  </>
-}
+
