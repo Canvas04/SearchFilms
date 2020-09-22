@@ -1,0 +1,16 @@
+/* from 0 to 3 */
+.low-grade {
+    border-color:  #E90000;
+}
+/* from 3 to 5 */
+.middle-grade {
+   border-color: #E97E00;
+}
+/* from 5 to 7 */
+.high-grade {
+    border-color: #E9D100;
+}
+/* from 7 and higher */
+.superior-grade {
+    border-color: #66E900;
+}
