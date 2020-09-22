@@ -24,12 +24,9 @@ function Card({ data,genres }) {
           <header className="content-desc-header">
             <h1> {item.title}</h1>
             <Rate rate={item.rate} />
-            {/* <span className="content-desc-header-rate">
-              <span>{item.rate}</span>
-            </span> */}
           </header>
-          <div className="content-desc-genre"><Genre id={item.genre} genres={genres}/></div>
           <div className="content-desc-date">{item.date}</div>
+          <div className="content-desc-genre"><Genre id={item.genre} genres={genres}/></div>
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">

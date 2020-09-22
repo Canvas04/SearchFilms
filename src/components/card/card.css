@@ -24,10 +24,10 @@
 }
 
 .content-desc-date {
-    margin: 4px 0;
+margin-top: -8px;
 }
 .content-desc-genre {
-    margin-top: -16px;
+    margin: 4px 0;
    color: darkslategray;
     opacity: 0.7;
 }
