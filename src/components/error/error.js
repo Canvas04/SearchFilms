@@ -3,7 +3,7 @@ import {Alert} from 'antd';
 import Loader from '../loader';
 import Card from '../card';
 
-function Error({ loading, isError, onClose, data ,genres}) {
+function Error({ loading, isError, onClose, data ,genres,rateFilms}) {
     if (loading && isError) {
       return (
         <>
@@ -38,7 +38,7 @@ function Error({ loading, isError, onClose, data ,genres}) {
     return (
       <>
         {" "}
-        <Card data={data} genres={genres} />
+        <Card data={data} genres={genres} rateFilms={rateFilms} />
       </>
     );
   }

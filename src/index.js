@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
-import Tab1 from './components/tab1';
+import Tab1 from "./components/tab1";
 import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
-
 
 class App extends Component {
   state = {
@@ -15,6 +14,7 @@ class App extends Component {
     isError: false,
     totalResults: 0,
     currentPage: 1,
+    rated: [],
   };
   nextPage = (pageNumber) => {
     const { value } = this.state;
@@ -65,7 +65,7 @@ class App extends Component {
       poster,
     };
   }
-  onError = (err) => {
+  onError = () => {
     this.setState({ isError: true });
   };
   onChangeHandler = (e) => {
@@ -76,7 +76,6 @@ class App extends Component {
       new MovieSearch()
         .getMovie(value)
         .then((body) => {
-          console.log(body);
           const needArr = body.results;
           const newData = needArr.map((item) => {
             return this.createItem(
@@ -109,13 +108,22 @@ class App extends Component {
   onClose = () => {
     this.setState({ value: "", isError: false });
   };
-  
-componentDidMount() {
-  new MovieSearch().getGenres()
-  .then(res => {
-    this.setState({genres:res.genres})
-  })
-}
+  rateFilms = (item,stars) => {
+console.log(stars);
+    this.setState(({ rated }) => {
+      if (!rated.includes(item)) {
+        return {
+          rated: [...rated, item],
+        };
+      }
+    });
+  };
+
+  componentDidMount() {
+    new MovieSearch().getGenres().then((res) => {
+      this.setState({ genres: res.genres });
+    });
+  }
   render() {
     const {
       data,
@@ -124,24 +132,34 @@ componentDidMount() {
       value,
       totalResults,
       currentPage,
-      genres
+      genres,
+      rated
     } = this.state;
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">
         <Tabs centered={true} defaultActiveKey="1">
           <TabPane tab={<span>Search</span>} key="1">
-             <Tab1 onChangeHandler={this.onChangeHandler} value={value} genres={genres} data={data} loading={loading} onClose={this.onClose} isError={isError} totalResults={totalResults} numberPages={numberPages} nextPage={this.nextPage} currentPage={currentPage} />
+            <Tab1
+              onChangeHandler={this.onChangeHandler}
+              value={value}
+              genres={genres}
+              data={data}
+              loading={loading}
+              onClose={this.onClose}
+              isError={isError}
+              totalResults={totalResults}
+              numberPages={numberPages}
+              nextPage={this.nextPage}
+              currentPage={currentPage}
+              rateFilms={this.rateFilms}
+            />
           </TabPane>
-          <TabPane tab={<span>Rated</span>} key="2">
-            
-
-          </TabPane>
+          <TabPane tab={<span>Rated</span>} key="2"></TabPane>
         </Tabs>
-       
-
       </div>
     );
   }
 }
 ReactDom.render(<App />, document.querySelector("#root"));
+

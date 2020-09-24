@@ -5,7 +5,7 @@ import {GenreProvider} from '../genres-context';
 import CardList from '../cardList';
 import './tab1.css';
 
-export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose,isError,totalResults,numberPages,nextPage,currentPage}) {
+export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose,isError,totalResults,numberPages,nextPage,currentPage,rateFilms}) {
     return <>
     <DebounceInput
     minLength={1}
@@ -19,6 +19,7 @@ export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose
     loading={loading}
     onClose={onClose}
     isError={isError}
+    rateFilms={rateFilms}
   /></GenreProvider>
 
   
