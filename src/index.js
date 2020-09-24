@@ -7,6 +7,10 @@ import "antd/dist/antd.css";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
 
+const guest_session_id = new MovieSearch().getSession()
+.then(res => {
+  sessionStorage.setItem('guest_session_id',res.guest_session_id)
+});
 class App extends Component {
   state = {
     data: [],

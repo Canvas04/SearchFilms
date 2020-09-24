@@ -41,7 +41,7 @@ function Card({ data,rateFilms }) {
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">
-            <Stars allowHalf={true} count={9} onChange={(stars) => {rateFilms(item,stars)}}  />
+            <Stars allowHalf={true} count={9} onChange={onHandlerStars}  />
           </div>
         </div>
       </li>
