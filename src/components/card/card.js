@@ -3,14 +3,13 @@ import "./card.css";
 import { Rate as Stars } from "antd";
 import Genre from "../genres";
 import Rate from "../rate";
-
+import MovieSearch from '../movie-search';
 function Card({ data,rateFilms }) {
 
-   const onHandlerStars = (number) => {
-        data.forEach(item => {
-          rateFilms(item)
-        }) 
-        return number;
+   const onHandlerStars = () => {
+       data.map(item => {
+         new MovieSearch().postRate(item.id)
+       })
       };
      
       const elements = data.map((item) => {
