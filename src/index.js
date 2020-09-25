@@ -124,9 +124,10 @@ class App extends Component {
 
   }
   rateFilms = (item) => {
+    console.log(item);
 this.setState((state) => {
   return {
-    rated: [item]
+    rated: [...state.rated,item]
   }
 })
   }
@@ -143,8 +144,7 @@ this.setState((state) => {
       rated,
       guest_session_id
     } = this.state;
-    
-console.log(rated);
+    console.log(rated);
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">

@@ -8,11 +8,12 @@ function Card({ data,rateFilms,session }) {
 
      
       const elements = data.map((item) => {
-       const onHandlerStars = (stars) => {
-      new MovieSearch().postRate(item.id,stars,session);
-      const rateFilm = new MovieSearch().getRatedFilms(session)
-      rateFilms(rateFilm);
+       const onHandlerStars = async (stars) => {
+        
+     await  new MovieSearch().postRate(item.id,stars,session)
+      rateFilms(await new MovieSearch().getRatedFilms(session))
       };  
+      
     return (
      
       <li key={item.id} className="content">
