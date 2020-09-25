@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 import Tab1 from "./components/tab1";
+import Tab2 from "./components/tab2";
 import MovieSearch from "./components/movie-search";
 import "./index.css";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
 
-const guest_session_id = new MovieSearch().getSession()
-.then(res => {
-  sessionStorage.setItem('guest_session_id',res.guest_session_id)
+const guest_session_id = new MovieSearch().getSession().then((res) => {
+  sessionStorage.setItem("guest_session_id", res.guest_session_id);
 });
 class App extends Component {
   state = {
@@ -112,22 +112,25 @@ class App extends Component {
   onClose = () => {
     this.setState({ value: "", isError: false });
   };
-  rateFilms = (item,stars) => {
-console.log(stars);
-    this.setState(({ rated }) => {
-      if (!rated.includes(item)) {
-        return {
-          rated: [...rated, item],
-        };
-      }
-    });
-  };
+  
 
   componentDidMount() {
     new MovieSearch().getGenres().then((res) => {
       this.setState({ genres: res.genres });
     });
+    new MovieSearch().getSession().then((res) => {
+      this.setState({guest_session_id: res.guest_session_id})
+    });
+
   }
+  rateFilms = (item) => {
+this.setState((state) => {
+  return {
+    rated: [item]
+  }
+})
+  }
+
   render() {
     const {
       data,
@@ -137,8 +140,11 @@ console.log(stars);
       totalResults,
       currentPage,
       genres,
-      rated
+      rated,
+      guest_session_id
     } = this.state;
+    
+console.log(rated);
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">
@@ -157,13 +163,20 @@ console.log(stars);
               nextPage={this.nextPage}
               currentPage={currentPage}
               rateFilms={this.rateFilms}
+              session={guest_session_id}
             />
           </TabPane>
-          <TabPane tab={<span>Rated</span>} key="2"></TabPane>
+          <TabPane tab={<span>Rated</span>} key="2">
+            <Tab2
+              genres={genres}
+              rated={rated}
+              loading={loading}
+              isError={isError}
+            />
+          </TabPane>
         </Tabs>
       </div>
     );
   }
 }
 ReactDom.render(<App />, document.querySelector("#root"));
-

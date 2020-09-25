@@ -4,16 +4,15 @@ import { Rate as Stars } from "antd";
 import Genre from "../genres";
 import Rate from "../rate";
 import MovieSearch from '../movie-search';
-function Card({ data,rateFilms }) {
+function Card({ data,rateFilms,session }) {
 
-   const onHandlerStars = () => {
-       data.map(item => {
-         new MovieSearch().postRate(item.id)
-       })
-      };
      
       const elements = data.map((item) => {
-        
+       const onHandlerStars = (stars) => {
+      new MovieSearch().postRate(item.id,stars,session);
+      const rateFilm = new MovieSearch().getRatedFilms(session)
+      rateFilms(rateFilm);
+      };  
     return (
      
       <li key={item.id} className="content">
@@ -40,7 +39,7 @@ function Card({ data,rateFilms }) {
           <div className="content-desc-overview">{item.desk}</div>
 
           <div className="content-desc-stars">
-            <Stars allowHalf={true} count={9} onChange={onHandlerStars}  />
+            <Stars allowHalf={true} count={9} defaultValue={item.rate} onChange={(stars ) =>{onHandlerStars(stars)}}  />
           </div>
         </div>
       </li>
