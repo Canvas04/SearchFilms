@@ -121,15 +121,14 @@ class App extends Component {
     new MovieSearch().getSession().then((res) => {
       this.setState({guest_session_id: res.guest_session_id})
     });
-
+   
   }
   rateFilms = (item) => {
-    console.log(item);
-this.setState((state) => {
-  return {
-    rated: [...state.rated,item]
-  }
-})
+    item.then(res => {
+    
+      this.setState({rated: res.results})
+    })
+
   }
 
   render() {
@@ -144,7 +143,8 @@ this.setState((state) => {
       rated,
       guest_session_id
     } = this.state;
-    console.log(rated);
+    
+console.log(rated);
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">
@@ -166,13 +166,13 @@ this.setState((state) => {
               session={guest_session_id}
             />
           </TabPane>
-          <TabPane tab={<span>Rated</span>} key="2">
+          <TabPane tab={<span onClick={()=> this.rateFilms(new MovieSearch().getRatedFilms(guest_session_id))}>Rated</span>}  key="2">
             <Tab2
               genres={genres}
               rated={rated}
               loading={loading}
               isError={isError}
-            />
+              />
           </TabPane>
         </Tabs>
       </div>

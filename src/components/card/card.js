@@ -10,8 +10,7 @@ function Card({ data,rateFilms,session }) {
       const elements = data.map((item) => {
        const onHandlerStars = async (stars) => {
         
-     await  new MovieSearch().postRate(item.id,stars,session)
-      rateFilms(await new MovieSearch().getRatedFilms(session))
+       await new MovieSearch().postRate(item.id,stars,session)
       };  
       
     return (
