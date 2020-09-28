@@ -4,6 +4,7 @@ import Pagination from "../pagination";
 import {GenreProvider} from '../genres-context';
 import CardList from '../cardList';
 import './tab1.css';
+import PropTypes from 'prop-types';
 
 export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose,isError,totalResults,numberPages,nextPage,currentPage,rateFilms,session}) {
     return <>
@@ -34,4 +35,19 @@ export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose
     />
   ) : null}
   </>
+}
+Tab1.propTypes = {
+  onChangeHandler: PropTypes.func,
+  value: PropTypes.string,
+  genres: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
+  onCLose: PropTypes.func,
+  isError: PropTypes.bool,
+  totalResults: PropTypes.number,
+  numberPages: PropTypes.number,
+  nextPage: PropTypes.number,
+  currentPage: PropTypes.number,
+  rateFilms: PropTypes.func,
+  session: PropTypes.func
 }

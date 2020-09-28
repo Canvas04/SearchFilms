@@ -3,25 +3,21 @@ import "./card.css";
 import { Rate as Stars } from "antd";
 import Genre from "../genres";
 import Rate from "../rate";
-import MovieSearch from '../movie-search';
+import MovieSearch from "../movie-search";
 import Img from "../img";
 import Text from "../text";
-function Card({ data,rateFilms,session }) {
+import PropTypes from "prop-types";
 
-     
-      const elements = data.map((item) => {
-       const onHandlerStars = async (stars) => {
-        
-       await new MovieSearch().postRate(item.id,stars,session)
-      };  
-      
+function Card({ data, session }) {
+  const elements = data.map((item) => {
+    const onHandlerStars = async (stars) => {
+      await new MovieSearch().postRate(item.id, stars, session);
+    };
+
     return (
-     
       <li key={item.id} className="content">
-        
         <div className="content-img">
           {" "}
-         
           <Img path={item.poster} overview={item.title} />
         </div>
 
@@ -35,20 +31,27 @@ function Card({ data,rateFilms,session }) {
             <Genre id={item.genre} />
           </div>
           <div className="content-desc-overview">
-            {/* {item.desk} */}
-<Text overview={item.desk} />
-            </div>
+            <Text overview={item.desk} />
+          </div>
 
           <div className="content-desc-stars">
-            <Stars allowHalf={true} count={9} defaultValue={item.rate} onChange={(stars ) =>{onHandlerStars(stars)}}  />
+            <Stars
+              allowHalf={true}
+              count={9}
+              defaultValue={item.rate}
+              onChange={(stars) => {
+                onHandlerStars(stars);
+              }}
+            />
           </div>
         </div>
       </li>
     );
   });
-   return <> {elements} </>;
-  
-  
-  
+  return <> {elements} </>;
 }
+Card.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  session: PropTypes.string
+};
 export default Card;

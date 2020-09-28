@@ -1,5 +1,6 @@
 import React from "react";
 import './rate.css';
+import PropTypes from 'prop-types';
 
 function Rate({ rate }) {
     let classNames = 'content-desc-header-rate';
@@ -17,5 +18,8 @@ classNames += ' middle-grade'
               <span>{rate}</span>
             </span>
   </>;
+}
+Rate.propTypes = {
+    rate: PropTypes.number
 }
 export default Rate;
