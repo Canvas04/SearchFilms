@@ -30,6 +30,7 @@ export default function Tab1 ({onChangeHandler,value,genres,data,loading,onClose
       nextPage={nextPage}
       currentPage={currentPage}
       value={value}
+      loading={loading}
     />
   ) : null}
   </>
