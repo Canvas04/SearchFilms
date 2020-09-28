@@ -26,7 +26,6 @@ class App extends Component {
       new MovieSearch()
         .getMovie(value, pageNumber)
         .then((body) => {
-          console.log(body);
           const needArr = body.results;
           const newData = needArr.map((item) => {
             return this.createItem(
@@ -144,7 +143,6 @@ class App extends Component {
       guest_session_id
     } = this.state;
     
-console.log(rated);
     const numberPages = Math.floor(totalResults / 20);
     return (
       <div className="main">

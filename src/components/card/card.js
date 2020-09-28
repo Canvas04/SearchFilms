@@ -4,6 +4,7 @@ import { Rate as Stars } from "antd";
 import Genre from "../genres";
 import Rate from "../rate";
 import MovieSearch from '../movie-search';
+import Img from "../img";
 function Card({ data,rateFilms,session }) {
 
      
@@ -19,12 +20,13 @@ function Card({ data,rateFilms,session }) {
         
         <div className="content-img">
           {" "}
-          <img
+          {/* <img
             alt={item.title}
             src={`http://image.tmdb.org/t/p/w440_and_h660_face/${item.poster}`}
             width={150}
             className="content-img-el"
-          />
+          /> */}
+          <Img path={item.poster} overview={item.title} />
         </div>
 
         <div className="content-desc">
