@@ -5,6 +5,7 @@ import Genre from "../genres";
 import Rate from "../rate";
 import MovieSearch from '../movie-search';
 import Img from "../img";
+import Text from "../text";
 function Card({ data,rateFilms,session }) {
 
      
@@ -20,12 +21,7 @@ function Card({ data,rateFilms,session }) {
         
         <div className="content-img">
           {" "}
-          {/* <img
-            alt={item.title}
-            src={`http://image.tmdb.org/t/p/w440_and_h660_face/${item.poster}`}
-            width={150}
-            className="content-img-el"
-          /> */}
+         
           <Img path={item.poster} overview={item.title} />
         </div>
 
@@ -38,7 +34,10 @@ function Card({ data,rateFilms,session }) {
           <div className="content-desc-genre">
             <Genre id={item.genre} />
           </div>
-          <div className="content-desc-overview">{item.desk}</div>
+          <div className="content-desc-overview">
+            {/* {item.desk} */}
+<Text overview={item.desk} />
+            </div>
 
           <div className="content-desc-stars">
             <Stars allowHalf={true} count={9} defaultValue={item.rate} onChange={(stars ) =>{onHandlerStars(stars)}}  />
